@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+
 
 function App() {
+  const navigate = useNavigate();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div style={{ padding: '3rem' }}>
+      <header>
+        <nav style={{ width: '50%', display: 'flex', justifyContent: 'space-around' }}>
+          <Link to='/todo'>To-do list</Link>
+          <Link to='/doing'>Doing tasks</Link>
+          <Link to='/done'>Complete tasks</Link>
+        </nav>
       </header>
+      <main>
+        <Outlet />
+      </main>
+      <div style={{ position: 'absolute', bottom: '5rem' }}>
+        <button onClick={() => navigate('/todo')}>Go to To do list</button>
+        <button onClick={() => navigate('/doing')}>Go to Doing Tasks</button>
+        <button onClick={() => navigate('/done')}>Go to Completed Tasks</button>
+      </div>
     </div>
   );
 }
